@@ -1,0 +1,9 @@
+name: fin
+channels:
+  - defaults
+dependencies:
+  - python==3.7
+  - matplotlib
+  - numpy
+  - pandas
+  - scikit-learn
