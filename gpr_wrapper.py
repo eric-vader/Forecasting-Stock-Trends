@@ -1,8 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.gaussian_process import GaussianProcessRegressor
-from sklearn.gaussian_process.kernels import RBF
-
+from sklearn.gaussian_process.kernels import RBF, RationalQuadratic, ExpSineSquared
 import data_handler
 
 
@@ -23,7 +22,8 @@ class Wrapper:
         self.__years = self.__company_data.years
         self.__max_days = self.__company_data.max_days
 
-        kernel = 63 * RBF(length_scale=1)
+        #kernel = 63 * RBF(length_scale=1)
+        kernel = 63 * (RBF(length_scale=1) * ExpSineSquared(length_scale=1) + RationalQuadratic(length_scale=1))
         self.__alpha = 1e-10
         self.__iterations = 10
         self.__kernels = [kernel]
